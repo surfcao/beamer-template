@@ -1,0 +1,118 @@
+%\ProvidesPackage{beamerthemeumbc4}[2004/10/14 v1.0 for beamer 2.21]
+%\ProvidesPackage{beamerthemeumbc4}[2004/12/26 v1.1 for beamer 3.01]
+%\ProvidesPackage{beamerthemeumbc4}[2005/03/05 v1.2 for beamer 3.01]
+%\ProvidesPackage{beamerthemettu}[2007/05/05 v1.3 for beamer 3.01]
+\ProvidesPackage{beamerthemecu}[2007/05/05 v1.3 for beamer 3.01]
+% A stripped-down theme for beamer, inspired by a PowerPoint design
+% 
+% Usage:
+%
+% \documentclass{beamer}
+% [commands affecting slide's background color, if any, go here]
+% \usetheme{umbc4}
+% ...
+% 
+% Rouben Rostamian <rostamian@umbc.edu>
+% Revision history:
+% v1.2:
+% 1. Moved \newdimen\umbc@ypos and \newbox\umbc@mybox out of the definition
+%    of \setbeamertemplate{frametitle}{...}.
+% 2. Renamed \@ypos and \@mybox to \umbc@ypos \umbc@mybox
+% 3. 2007-05-05: Added \usepackage{pgfcomp-version-0-65} 
+\mode<presentation>
+\usepackage{pgfcomp-version-0-65}
+%------ definition of the red, gold, blue logo ------------------------
+\usepackage{xcolor}
+%\definecolor{ucsbyellow}{rgb}{1,0.78,0.18}
+%{
+% \usebeamercolor[bg]{background canvas}  % blend logo with canvas bg color
+%  \pgfdeclarehorizontalshading{umbc@fadingline}{.6mm}%
+%    {color(0mm)=(ucsbyellow); color(108mm)=(ucsbyellow)}
+%}
+%
+%\definecolor{uiucorange}{RGB}{244,127,36}
+%{
+% \usebeamercolor[bg]{background canvas}  % blend logo with canvas bg color
+%  \pgfdeclarehorizontalshading{umbc@fadingline}{.6mm}%
+%    {color(0mm)=(uiucorange); color(114mm)=(uiucorange)}
+%}
+%
+%\definecolor{uiucblue}{RGB}{0,60,125}
+
+\definecolor{ttured}{RGB}{204,0,0}
+\definecolor{ttured2}{RGB}{150,0,0}
+\definecolor{ttublack}{RGB}{0,0,0}
+\definecolor{cugold}{RGB}{207,184,124}
+\definecolor{cublack}{RGB}{0,0,0}
+{
+ \usebeamercolor[bg]{background canvas}  % blend logo with canvas bg color
+  \pgfdeclarehorizontalshading{umbc@fadingline}{.5mm}%
+    {color(0mm)=(cugold); color(114mm)=(cugold)}
+}
+
+\newcommand{\umbc@pplogo}{%
+  \raisebox{-9.7mm}[0pt][0pt]{%
+    \begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
+      \begin{pgftranslate}{\pgfpoint{0.0mm}{0mm}}
+        \pgfbox[left,base]{\pgfuseshading{umbc@fadingline}}
+      \end{pgftranslate}
+      % the gold box
+    \end{pgfpicture}
+  }
+}
+
+%------ end of definition of the red, gold, blue logo -----------------
+
+% frame head
+\setbeamertemplate{headline}[text line]{\umbc@pplogo}
+
+\setbeamerfont{frametitle}{size=\Large} % beamer's default is \Large
+\setbeamerfont{title}{size=\LARGE} % beamer's default is \Large
+
+% Trying to position frame title in a fixed position.
+% Unfortunately, Beamer provides no hooks for absolute positioning of text.
+% I have arrived at the following kludge by trial and error.  It works only
+% approximately.  It may have to be readjusted to work with future releases
+% of Beamer.
+\newdimen\umbc@ypos
+\newbox\umbc@mybox
+\setbeamertemplate{frametitle}{%
+  \setbox\umbc@mybox\hbox{\normalsize x}
+  \umbc@ypos=\ht\umbc@mybox
+  \multiply \umbc@ypos by 2
+  \advance \umbc@ypos by -6.0mm
+  \raisebox{\umbc@ypos}[0pt][3mm]{\hspace*{3mm}\insertframetitle}
+}
+
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{enumerate item}[default]
+%\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamercolor{itemize item}{bg=cugold,fg=cugold}
+\setbeamercolor{itemize subitem}{bg=cugold,fg=cugold}
+\setbeamercolor{itemize subsubitem}{bg=cugold,fg=cugold}
+%\setbeamercolor{itemize subitem}{bg=cugold,fg=cugold}
+\setbeamercolor{enumerate item}{bg=cugold, fg=cugold}
+\setbeamercolor{enumerate subitem}{bg=cugold, fg=cublack}
+%\setbeamercolor{enumerate subsubitem}{bg=cugold, fg=cublack}
+%\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+\setbeamercolor{section number projected}{bg=cugold,fg=cublack}
+\setbeamercolor{block title}{bg=,fg=cublack}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamercolor{title}{bg=,fg=cublack}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{bg=cublack,fg=cublack}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor{title in headline}{bg=cublack,fg=cublack}
+\useoutertheme{cufootline}
+%\useinnertheme{umbctribullets}
+%\umbctribulletscolors{ucsbyellow}{blue}{red}
+\setbeamerfont{structure}{shape=\itshape}
+%\setbeamerfont{block title}{shape=\upshape}
+%\setbeamerfont{frametitle}{shape=\upshape}
+\setbeamerfont{block title}{shape=\upshape}
+%\setbeamerfont{title}{series=\bfseries}
+%
+\mode<all>
