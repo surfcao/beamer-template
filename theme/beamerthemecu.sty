@@ -47,13 +47,13 @@
 {
  \usebeamercolor[bg]{background canvas}  % blend logo with canvas bg color
   \pgfdeclarehorizontalshading{umbc@fadingline}{.5mm}%
-    {color(0mm)=(cugold); color(114mm)=(cugold)}
+    {color(0mm)=(cugold); color(115mm)=(cugold)}
 }
 
 \newcommand{\umbc@pplogo}{%
   \raisebox{-9.7mm}[0pt][0pt]{%
     \begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
-      \begin{pgftranslate}{\pgfpoint{0.0mm}{0mm}}
+      \begin{pgftranslate}{\pgfpoint{-1.0mm}{0mm}}
         \pgfbox[left,base]{\pgfuseshading{umbc@fadingline}}
       \end{pgftranslate}
       % the gold box
